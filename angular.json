@@ -1,9 +1,12 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": "c49bbe0f-740c-48c2-ac20-c8dea7d2d998"
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "appingresomedico": {
+    "appregistromedico": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
@@ -17,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/appingresomedico",
+            "outputPath": "dist/appregistromedico",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -68,10 +71,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "appingresomedico:build:production"
+              "browserTarget": "appregistromedico:build:production"
             },
             "development": {
-              "browserTarget": "appingresomedico:build:development"
+              "browserTarget": "appregistromedico:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -79,7 +82,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "appingresomedico:build"
+            "browserTarget": "appregistromedico:build"
           }
         },
         "test": {
@@ -98,9 +101,19 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "appregistromedico:build:production",
+            "firebaseProject": "appingresomedico",
+            "firebaseHostingSite": "appingresomedico"
+          }
         }
       }
     }
   },
-  "defaultProject": "appingresomedico"
+  "defaultProject": "appregistromedico"
 }

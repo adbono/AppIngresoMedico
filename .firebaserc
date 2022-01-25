@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "appingresomedico": {
+      "hosting": {
+        "appregistromedico": [
+          "appingresomedico"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "appingresomedico"
+  }
+}
