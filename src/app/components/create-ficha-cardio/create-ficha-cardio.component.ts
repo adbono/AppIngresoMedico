@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-create-ficha-cardio',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateFichaCardioComponent implements OnInit {
 
-  constructor() { }
+  createFicha: FormGroup
+
+  constructor(private fb: FormBuilder ) { 
+    this.createFicha = fb.group({
+      usuario: ['', Validators.required],
+      nombre: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]]
+    })
+  }
 
   ngOnInit(): void {
+  }
+
+  onSubmit(){
+    
   }
 
 }

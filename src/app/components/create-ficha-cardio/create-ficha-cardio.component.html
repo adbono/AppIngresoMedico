@@ -1,1 +1,210 @@
-<p>create-ficha-cardio works!</p>
+<div class="container pt-4">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-header ">
+                    <h3 class="text-center">
+                        Alta de Ficha
+                        <!-- <div *ngIf="loading" class="spinner-border text-primary float-end" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div> -->
+                    </h3>
+                </div>
+                <div class="card-body">
+                    <!-- <span *ngIf="submitted && createUsuario.invalid" class="badge bg-danger">Todos los campos son obligatorios</span> -->
+                    <form class="mt-1" [formGroup]="createFicha" (submit)="onSubmit()">
+                            <div class="card mb-3">
+                                <div class="card-header">
+                                    <h5>Datos Personales</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-6 mb-1">
+                                            <input type="text" class="form-control" placeholder="Nombre y Apellido" formControlName="nombre">
+                                        </div>
+                                        <div class="col-sm-6 col-md-3 mb-1">
+                                            <input type="number" class="form-control" placeholder="Edad" formControlName="edad">
+                                        </div>
+                                        <div class="col-sm-6 col-md-3">
+                                            <select class="form-select" formControlName="sexo" >
+                                                <option value="M">M</option>
+                                                <option value="F">F</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5>Insuficienta Cardiaca</h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-sm-6 col-md-3 mb-1">
+                                            <input type="number" class="form-control" placeholder="Dias de Internacion" formControlName="diasInternacion">
+                                        </div>
+                                        <div class="col-sm-6 col-md-3 mb-1">
+                                            <input type="number" class="form-control" placeholder="Internaciones Previas" formControlName="internacionesPrevias">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-3 my-2">
+                                            <label>Factores De Riesgo</label>
+                                        </div>
+
+                                        <select class="">
+                                            <option>Mustard</option>
+                                            <option>Ketchup</option>
+                                            <option>Barbecue</option>
+                                          </select>
+                                          
+                                        <!-- <div class="col-sm-12 col-md-9 my-2">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="fr1" value="HTA">
+                                                <label class="form-check-label" for="fr1">HTA</label>
+                                              </div>
+                                              <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="fr2" value="DBT">
+                                                <label class="form-check-label" for="fr2">DBT</label>
+                                              </div>
+                                              <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="fr3" value="DLP">
+                                                <label class="form-check-label" for="fr3">DLP</label>
+                                              </div>
+                                              <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="fr4" value="TBQ / EXTBQ">
+                                                <label class="form-check-label" for="fr4">TBQ / EXTBQ</label>
+                                              </div>
+                                              <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="fr5" value="Insuficiencia renal">
+                                                <label class="form-check-label" for="fr5">Insuficiencia renal</label>
+                                              </div>
+                                              <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="fr6" value="Obesidad">
+                                                <label class="form-check-label" for="fr6">Obesidad</label>
+                                              </div>
+                                        </div> -->
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-3 my-2">
+                                            <label>Antecedentes</label>
+                                        </div>
+                                        <div class="col-sm-12 col-md-9 my-2">
+                                            <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="a1" value="ACV/AIT">
+                                                <label class="form-check-label" for="a1">HTA</label>
+                                              </div>
+                                              <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="a2" value="Hipertiroidismo">
+                                                <label class="form-check-label" for="a2">Hipertiroidismo</label>
+                                              </div>
+                                              <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="a3" value="Hipotiroidismo">
+                                                <label class="form-check-label" for="a3">Hipotiroidismo</label>
+                                              </div>
+                                              <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="a4" value="EPOC">
+                                                <label class="form-check-label" for="a4">EPOC</label>
+                                              </div>
+                                              <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="a5" value="COVID +">
+                                                <label class="form-check-label" for="a5">COVID +</label>
+                                              </div>
+                                              <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="a6" value="
+                                                Cardiopatia coronaria">
+                                                <label class="form-check-label" for="a6">
+                                                    Cardiopatia coronaria</label>
+                                              </div>
+                                              <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="a7" value="Cardiopatia valvular
+                                                ">
+                                                <label class="form-check-label" for="a7">Cardiopatia valvular
+                                                </label>
+                                              </div>
+                                              <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="a8" value="Arritmias supraventriculares
+                                                ">
+                                                <label class="form-check-label" for="a8">Arritmias supraventriculares
+                                                </label>
+                                              </div>
+                                              <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="a9" value="Arritmias ventriculares
+                                                ">
+                                                <label class="form-check-label" for="a9">Arritmias ventriculares
+                                                </label>
+                                              </div>
+                                              <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="a10" value="MCP">
+                                                <label class="form-check-label" for="a10">MCP</label>
+                                              </div>
+                                              <div class="form-check form-check-inline">
+                                                <input class="form-check-input" type="checkbox" id="a11" value="CDI/TRC
+                                                ">
+                                                <label class="form-check-label" for="a11">CDI/TRC
+                                                </label>
+                                              </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            
+
+                            <!-- 
+                                        
+                                        <div class="col-sm-12 col-md-6 mb-1">
+                                            <input type="text" class="form-control form-control-lg" placeholder="Antecedentes" formControlName="antecedentes">
+                                        </div>
+                                        <div class="col-sm-12 col-md-6 mb-1">
+                                            <input type="text" class="form-control form-control-lg" placeholder="Clase Funcional" formControlName="claseFuncional">
+                                        </div>
+                                        
+                                        <div class="col-sm-12 col-md-6 mb-1">
+                                            <input type="text" class="form-control form-control-lg" placeholder="Medicacion Habitual" formControlName="medicacionHabitual">
+                                        </div>
+                                        <div class="col-sm-12 col-md-6 mb-1">
+                                            <input type="text" class="form-control form-control-lg" placeholder="Formas De Presentacion" formControlName="formasPresentacion">
+                                        </div>
+                                        <div class="col-sm-12 col-md-6 mb-1">
+                                            <input type="text" class="form-control form-control-lg" placeholder="Causa Descompensante" formControlName="causaDescompensante">
+                                        </div>
+                                        <div class="col-sm-12 col-md-6 mb-1">
+                                            <input type="text" class="form-control form-control-lg" placeholder="ECG Ingreso" formControlName="ecgIngreso">
+                                        </div>
+                                        <div class="col-sm-12 col-md-6 mb-1">
+                                            <input type="text" class="form-control form-control-lg" placeholder="Ecocardioogrma al Ingreso" formControlName="ecocardiogramaIngreso">
+                                        </div>
+                                        <div class="col-sm-12 col-md-6 mb-1">
+                                            <input type="text" class="form-control form-control-lg" placeholder="Laboratorio" formControlName="laboratorio">
+                                        </div>
+                                        <div class="col-sm-12 col-md-6 mb-1">
+                                            <input type="text" class="form-control form-control-lg" placeholder="Tratamiento" formControlName="tratamiento">
+                                        </div>
+                                        <div class="col-sm-12 col-md-6 mb-1">
+                                            <input type="text" class="form-control form-control-lg" placeholder="RequirioBCIA" formControlName="requirioBcia">
+                                        </div>
+                                        <div class="col-sm-12 col-md-6 mb-1">
+                                            <input type="text" class="form-control form-control-lg" placeholder="Requirio IOT / ARM" formControlName="requirioIotArm">
+                                        </div>
+                                        <div class="col-sm-12 col-md-6 mb-1">
+                                            <input type="text" class="form-control form-control-lg" placeholder="Requirio Dialisis" formControlName="requirioDialisis">
+                                        </div>
+                                        <div class="col-sm-12 col-md-6 mb-1">
+                                            <input type="text" class="form-control form-control-lg" placeholder="CDI/TRC Implantado en la Internacion" formControlName="cdiTrcImplantado">
+                                        </div>
+                                        <div class="col-sm-12 col-md-6 mb-1">
+                                            <input type="text" class="form-control form-control-lg" placeholder="Obito" formControlName="obito">
+                                        </div> -->
+
+                        <div class="float-end">
+                            <button type="button" class="btn btn-secondary btn-lg me-3" routerLink="/list-usuarios">Volver</button>
+                            <button type="submit" class="btn btn-dark btn-lg">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
