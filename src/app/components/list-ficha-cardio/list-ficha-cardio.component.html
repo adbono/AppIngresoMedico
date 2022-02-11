@@ -1,12 +1,18 @@
 <div class="fluid-container">
-    <div class="container my-2">
+    <div class="container-fluid my-2">
         <div class="row">
-            <div class="col">
-                <span class="h3">Listado de Fichas</span>
-            </div>
-            <div class="col">
-                <button class="btn btn-primary float-end mx-1" routerLink="/create-fichaCardio">Agregar</button>
-                <button class="btn btn-success float-end mx-1">Exportar</button>
+            <div class="col-8"><span class="h3">Listado de Fichas</span></div>
+            <div class="col-4">
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button type="button" class="btn btn-outline-success">
+                        <i class="fa-solid fa-file-excel fa-lg"></i>
+                        <span class="d-none d-md-block d-inline-block float-end"> &nbsp;Exportar</span>
+                    </button> 
+                    <button type="button" class="btn btn-outline-primary" routerLink="/create-fichaCardio">
+                        <i class="fa-solid fa-circle-plus fa-lg"></i>
+                        <span class="d-none d-md-block d-inline-block float-end"> &nbsp;Agregar</span>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
