@@ -14,7 +14,7 @@ export class FichaCardioService {
   }
 
   getFichas(): Observable<any>{
-    return this.firestore.collection('fichacardio', ref => ref.orderBy('fecha','asc')).snapshotChanges()
+    return this.firestore.collection('fichacardio', ref => ref.orderBy('fechaalta','asc')).snapshotChanges()
   }
 
   eliminarFicha(id: string): Promise<any>{
@@ -30,6 +30,18 @@ export class FichaCardioService {
   }
 
   getFactoresRiesgo(): Observable<any>{
-    return this.firestore.collection('factoresriesgo').snapshotChanges()
+    return this.firestore.collection('factoresriesgo', ref => ref.orderBy('nombre','asc')).snapshotChanges()
+  }
+
+  getAntecedentes(): Observable<any>{
+    return this.firestore.collection('antecedentes', ref => ref.orderBy('nombre','asc')).snapshotChanges()
+  }
+
+  getMedicacionHabitual(): Observable<any>{
+    return this.firestore.collection('medicacionhabitual', ref => ref.orderBy('nombre','asc')).snapshotChanges()
+  }
+
+  getTratamiento(): Observable<any>{
+    return this.firestore.collection('tratamiento', ref => ref.orderBy('nombre','asc')).snapshotChanges()
   }
 }

@@ -12,57 +12,110 @@
     </div>
     <div class="card">
         <div class="card-body">
-            <!-- <h5 *ngIf="usuarios.length == 0" class="mt-5">No hay Usuarios</h5> -->
-            <!-- <table *ngIf="usuarios.length > 0" class="table table-striped mt-5"> -->
                 <div class="table-responsive">
-                <table  class="table table-striped">
-                <thead>
-                  <tr>
+                <table  class="table table-hover table-sm">
+                <thead class="table-secondary">
+                  <tr class="align-middle">
                       <th>Nombre</th>
                       <th>Edad</th>
                       <th>Sexo</th>
-                      <th>Dias Internacion</th>
+                      <th>Inter. Dias</th>
+                      <th>Inter. Previas</th>
                       <th>Factores de Riesgo</th>
                       <th>Antecedentes</th>
                       <th>Clase Funcional</th>
-                      <th>Inter. Previas</th>
                       <th>Medicacion Habitual</th>
                       <th>Forma de Presentacion</th>
-                      <th>Causa Descompensante</th>
+                      <th>Causa Descomp.</th>
                       <th>ECG Ingreso</th>
                       <th>Ecocardiograma al Ingreso</th>
+                      <th></th>
                       <th>Laboratorio</th>
+                      <th></th>
                       <th>Tratamiento</th>
-                      <th>Requirio BCIA?</th>
-                      <th>Requirio IOT/ARM?</th>
-                      <th>Requirio Dialisis?</th>
-                      <th>CDI/TRC implantado en la internacion</th>
-                      <th>Obito</th>
+                      <th>Preguntas</th>
+                      <th></th>
+                      <th>Acciones</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <!-- <tr *ngFor="let e of usuarios"> -->
-                <tr>
-                    <td>Nombre</td>
-                    <td>Edad</td>
-                    <td>Sexo</td>
-                    <td>DiasInternacion</td>
-                    <td>FactoresdeRiesgo</td>
-                    <td>Antecedentes</td>
-                    <td>ClaseFuncional</td>
-                    <td>Inter.Previas</td>
-                    <td>MedicacionHabitual</td>
-                    <td>FormadePresentacion</td>
-                    <td>CausaDescompensante</td>
-                    <td>ECGIngreso</td>
-                    <td>EcocardiogramaalIngreso</td>
-                    <td>Laboratorio</td>
-                    <td>Tratamiento</td>
-                    <td>RequirioBCIA?</td>
-                    <td>RequirioIOT/ARM?</td>
-                    <td>RequirioDialisis?</td>
-                    <td>CDI/TRCimplantadoenlainternacion</td>
-                    <td>Obito</td>
+                <tr *ngFor="let f of fichas" class="align-middle lh-sm fs-6">
+                    <td><span 
+                        class="badge text-dark"
+                        data-toggle="tooltip" 
+                        title="{{f.nombre}}"
+                        >{{f.nombre | slice:0:25}}
+                        </span>
+                    </td>
+                    <td>{{f.edad}}</td>
+                    <td>{{f.sexo}}</td>
+                    <td>{{f.diasinternacion}}</td>
+                    <td>{{f.internacionesprevias}}</td>
+                    <td>
+                        <span class="badge rounded-pill bg-primary" *ngFor="let item of f.factoresriesgo">{{item}}</span>
+                    </td>
+                    <td><span class="badge rounded-pill bg-primary" *ngFor="let item of f.antecedentes">{{item}}</span></td>
+                    <td>{{f.clasefuncional}}</td>
+                    <td><span class="badge rounded-pill bg-primary" *ngFor="let item of f.medicacionhabitual">{{item}}</span></td>
+                    <td>{{f.formapresentacion}}</td>
+                    <td>{{f.causadescompensante}}</td>
+                    <td>
+                        <span class="badge text-dark">Ritmo: {{f.ritmo}}</span>
+                        <span class="badge text-dark">Frecuencia: {{f.frecuencia}}</span>
+                        <span class="badge text-dark">BCRI: {{f.bcri}}</span>      
+                    </td>
+                    <td>
+                        <span class="badge text-dark">FSVI: {{f.fsvi}}</span>
+                        <span class="badge text-dark">PSAP: {{f.psap}}</span>
+                    </td>
+                    <td>
+                        <span class="badge text-dark">HTO/HB: {{f.htohb}}</span>
+                        <span class="badge text-dark">Urea: {{f.urea}}</span>
+                        <span class="badge text-dark">Creatinina: {{f.creatinina}}</span>
+                        <span class="badge text-dark">ProBNP: {{f.probnp}}</span>
+                    </td>
+                    <td>
+                        <span class="badge text-dark">Troponina US: {{f.troponinaus}}</span>
+                        <span class="badge text-dark">Dimero D: {{f.dimerod}}</span>
+                        <span class="badge text-dark">PCR: {{f.pcr}}</span>
+                        <span class="badge text-dark">VSG: {{f.vsg}}</span>
+                        
+                    </td>
+                    <td>
+                        <span class="badge text-dark">Sodio: {{f.sodio}}</span>
+                        <span class="badge text-dark">Potasio: {{f.potasio}}</span>
+                        <span class="badge text-dark">Cloro: {{f.cloro}}</span>
+                    </td>
+                    <td><span class="badge rounded-pill bg-primary" *ngFor="let item of f.tratamiento">{{item}}</span></td>
+                    <td>
+                        
+                        <span class="badge text-dark">BCIA: 
+                            <i *ngIf="f.bcia" class="text-success fa-solid fa-circle-check"></i>
+                            <i *ngIf="!f.bcia" class="text-danger fa-solid fa-circle-xmark"></i>
+                        </span>
+                        <span class="badge text-dark">IOT/ARM: 
+                            <i *ngIf="f.iotarm" class="text-success fa-solid fa-circle-check"></i>
+                            <i *ngIf="!f.iotarm" class="text-danger fa-solid fa-circle-xmark"></i>
+                        </span>
+                        <span class="badge text-dark">Dialisis: 
+                            <i *ngIf="f.dialisis" class="text-success fa-solid fa-circle-check"></i>
+                            <i *ngIf="!f.dialisis" class="text-danger fa-solid fa-circle-xmark"></i>
+                        </span>
+                    </td>
+                    <td>
+                        <span class="badge text-dark">CDI/TRC en implantacion?: 
+                            <i *ngIf="f.cditrc" class="text-success fa-solid fa-circle-check"></i>
+                            <i *ngIf="!f.cditrc" class="text-danger fa-solid fa-circle-xmark"></i>
+                        </span>
+                        <span class="badge text-dark">Obito: 
+                            <i *ngIf="f.obito" class="text-success fa-solid fa-circle-check"></i>
+                            <i *ngIf="!f.obito" class="text-danger fa-solid fa-circle-xmark"></i>
+                        </span>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-sm btn-outline-warning"><i class="fa-solid fa-pen"></i></button>
+                        <button type="button" class="btn btn-sm btn-outline-danger"><i class="fa-solid fa-trash"></i></button>
+                    </td>
                   </tr>
                 </tbody>
               </table>

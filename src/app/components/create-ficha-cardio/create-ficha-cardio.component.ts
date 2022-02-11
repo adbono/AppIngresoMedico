@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/f
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { FichaCardioService } from 'src/app/service/ficha-cardio.service';
+declare var $: any;
 
 @Component({
   selector: 'app-create-ficha-cardio',
@@ -17,6 +18,9 @@ export class CreateFichaCardioComponent implements OnInit {
   loading = false
   titulo = 'Alta de Ficha'
   factoresriesgo: string[] = []
+  antecedentes: string[] = []
+  medicacionhabitual: string[] = []
+  tratamiento: string[] = []
 
   constructor(private fb: FormBuilder, 
               private _fichaService: FichaCardioService,
@@ -27,14 +31,14 @@ export class CreateFichaCardioComponent implements OnInit {
       nombre: ['', Validators.required],
       edad: ['', Validators.required],
       sexo: ['', Validators.required],
-      diasInternacion: [0, Validators.required],
-      internacionesPrevias: [0, Validators.required],
+      diasinternacion: [0, Validators.required],
+      internacionesprevias: [0, Validators.required],
       factoresriesgo: ['', Validators.required],
       antecedentes: ['', Validators.required],
-      claseFuncional: ['', Validators.required],
-      medicacionHabitual: ['', Validators.required],
-      formaPresentacion: ['', Validators.required],
-      causaDescompensante: ['', Validators.required],
+      clasefuncional: ['', Validators.required],
+      medicacionhabitual: ['', Validators.required],
+      formapresentacion: ['', Validators.required],
+      causadescompensante: ['', Validators.required],
       ritmo: ['', Validators.required],
       frecuencia: ['', Validators.required],
       bcri: ['', Validators.required],
@@ -43,6 +47,7 @@ export class CreateFichaCardioComponent implements OnInit {
       urea: ['', Validators.required],
       htohb: ['', Validators.required],
       creatinina: ['', Validators.required],
+      probnp: ['', Validators.required],
       troponinaus: ['', Validators.required],
       dimerod: ['', Validators.required],
       pcr: ['', Validators.required],
@@ -67,11 +72,41 @@ export class CreateFichaCardioComponent implements OnInit {
   }
 
   getItems(){
-    this._fichaService.getFactoresRiesgo().subscribe(data =>{
+    this._fichaService.getFactoresRiesgo().subscribe(data => {
       this.factoresriesgo = []
       data.forEach((element: any) => {
         this.factoresriesgo.push(element.payload.doc.data().nombre);
       })
+      setTimeout(function () {
+        $('.selectpicker').selectpicker('refresh');
+     }, 100);
+    })
+    this._fichaService.getAntecedentes().subscribe(data => {
+      this.antecedentes = []
+      data.forEach((element: any) => {
+        this.antecedentes.push(element.payload.doc.data().nombre);
+      })
+      setTimeout(function () {
+        $('.selectpicker').selectpicker('refresh');
+     }, 100);
+    })
+    this._fichaService.getMedicacionHabitual().subscribe(data => {
+      this.medicacionhabitual = []
+      data.forEach((element: any) => {
+        this.medicacionhabitual.push(element.payload.doc.data().nombre);
+      })
+      setTimeout(function () {
+        $('.selectpicker').selectpicker('refresh');   // refresh the selectpicker with fetched courses
+     }, 100);
+    })
+    this._fichaService.getTratamiento().subscribe(data => {
+      this.tratamiento = []
+      data.forEach((element: any) => {
+        this.tratamiento.push(element.payload.doc.data().nombre);
+      })
+      setTimeout(function () {
+        $('.selectpicker').selectpicker('refresh');   // refresh the selectpicker with fetched courses
+     }, 100);
     })
   }
 
@@ -121,7 +156,7 @@ export class CreateFichaCardioComponent implements OnInit {
           formaPresentacion, causaDescompensante, ritmo, frecuencia, 
           bcri, fsvi, psap, urea, htohb, creatinina, troponinaus, dimerod, 
           pcr, vsg, potasio, sodio, cloro, tratamiento, bcia, iotarm, dialisis, 
-          cditrc, obito
+          cditrc, obito, probnp
         } = data.payload.data()
         this.createFicha.setValue({
           nombre, edad, sexo, diasInternacion, internacionesPrevias,
@@ -129,7 +164,7 @@ export class CreateFichaCardioComponent implements OnInit {
           formaPresentacion, causaDescompensante, ritmo, frecuencia, 
           bcri, fsvi, psap, urea, htohb, creatinina, troponinaus, dimerod, 
           pcr, vsg, potasio, sodio, cloro, tratamiento, bcia, iotarm, dialisis, 
-          cditrc, obito
+          cditrc, obito, probnp
         })
         this.loading = false
       })
