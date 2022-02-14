@@ -10,9 +10,9 @@ const routes: Routes = [
   { path: '', redirectTo: 'list-fichaCardio', pathMatch: 'full'},
   { path: 'create-fichaCardio', component: CreateFichaCardioComponent},
   { path: 'list-fichaCardio', component: ListFichaCardioComponent},
-  { path: 'edit-fichaCardio/:id', component: CreateUsuarioComponent},
+  { path: 'create-fichaCardio/:id', component: CreateFichaCardioComponent},
   { path: 'list-items', component: ListItemsComponent},
-  { path: '**', redirectTo: 'list-usuarios', pathMatch: 'full'}
+  { path: '**', redirectTo: 'list-fichaCardio', pathMatch: 'full'}
 ];
 
 @NgModule({

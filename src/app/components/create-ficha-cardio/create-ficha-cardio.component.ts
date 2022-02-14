@@ -152,7 +152,7 @@ export class CreateFichaCardioComponent implements OnInit {
       this._fichaService.getFicha(this.id).subscribe(data => {
         const {
           nombre, edad, sexo, diasinternacion, internacionesprevias,
-          factoresRiesgo, antecedentes, clasefuncional, medicacionhabitual, 
+          factoresriesgo, antecedentes, clasefuncional, medicacionhabitual, 
           formapresentacion, causadescompensante, ritmo, frecuencia, 
           bcri, fsvi, psap, urea, htohb, creatinina, troponinaus, dimerod, 
           pcr, vsg, potasio, sodio, cloro, tratamiento, bcia, iotarm, dialisis, 
@@ -160,7 +160,7 @@ export class CreateFichaCardioComponent implements OnInit {
         } = data.payload.data()
         this.createFicha.setValue({
           nombre, edad, sexo, diasinternacion, internacionesprevias,
-          factoresRiesgo, antecedentes, clasefuncional, medicacionhabitual, 
+          factoresriesgo, antecedentes, clasefuncional, medicacionhabitual, 
           formapresentacion, causadescompensante, ritmo, frecuencia, 
           bcri, fsvi, psap, urea, htohb, creatinina, troponinaus, dimerod, 
           pcr, vsg, potasio, sodio, cloro, tratamiento, bcia, iotarm, dialisis, 
