@@ -40,11 +40,48 @@ export class ListFichaCardioComponent implements OnInit {
   }
 
   exportExcel(){
-    var listfichas = this.fichas.filter(e => delete e.id)
+    var listfichas = this.fichas.map(e => {
+      var nuevo = {
+        'Nombre': e.nombre,
+        'Edad': e.edad,
+        'Sexo': e.sexo,
+        'Dias de Internacion': e.diasinternacion,
+        'Internaciones Previas': e.internacionesprevias,
+        'Factores de Riesgo': e.factoresriesgo.toString().split(',').join(', '),
+        'Antecedentes': e.antecedentes.toString().split(',').join(', '),
+        'Clase Funcional': e.clasefuncional,
+        'Medicacion Habitual': e.medicacionhabitual.toString().split(',').join(', '),
+        'Forma de Presentacion': e.formapresentacion,
+        'Causa Descompensante': e.causadescompensante,
+        'Ritmo': e.ritmo,
+        'Frecuencia': e.frecuencia,
+        'BCRI': e.bcri,
+        'FSVI': e.fsvi,
+        'PSAP': e.psap,
+        'Urea': e.urea,
+        'HTO/HB': e.htohb,
+        'Creatinina': e.creatinina,
+        'Troponinaus': e.troponinaus,
+        'Dimero D': e.dimerod,
+        'PCR': e.pcr,
+        'VSG': e.vsg,
+        'Potasio': e.potasio,
+        'Sodio': e.sodio,
+        'Cloro': e.cloro,
+        'Tratamiento': e.tratamiento.toString().split(',').join(', '),
+        'BCIA': e.bcia,
+        'IOT/ARM': e.iotarm,
+        'Dialisis': e.dialisis,
+        'CDI/TRC': e.cditrc,
+        'PROBNP': e.probnp,
+        'Obito': e.obito,
+      }
+      return nuevo
+    });
     const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(listfichas)
     const wb: XLSX.WorkBook = XLSX.utils.book_new();  
     XLSX.utils.book_append_sheet(wb, ws, 'Hoja1');  
-    XLSX.writeFile(wb, 'FichasCardio.xlsx');  
+    XLSX.writeFile(wb, 'Fichas_Cardio.xlsx');  
   }
 
 }
