@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from 'src/app/service/auth.service';
 import { FichaCardioService } from 'src/app/service/ficha-cardio.service';
 declare var $: any;
 
@@ -21,12 +22,14 @@ export class CreateFichaCardioComponent implements OnInit {
   antecedentes: string[] = []
   medicacionhabitual: string[] = []
   tratamiento: string[] = []
+  email: any
 
   constructor(private fb: FormBuilder, 
               private _fichaService: FichaCardioService,
               private router: Router, 
               private toastr: ToastrService,
-              private aRoute: ActivatedRoute ) { 
+              private aRoute: ActivatedRoute,
+              private _auth: AuthService ) { 
     this.createFicha = fb.group({
       nombre: ['', Validators.required],
       edad: ['', Validators.required],
@@ -69,6 +72,7 @@ export class CreateFichaCardioComponent implements OnInit {
   ngOnInit(): void {
     this.cargarFicha()
     this.getItems()
+    this._auth.getCurrentUser().then(user => this.email = user?.email)
   }
 
   getItems(){
@@ -116,12 +120,18 @@ export class CreateFichaCardioComponent implements OnInit {
       return
     }
     var ficha: any = this.createFicha.value
-    if(this.id === null){  
-      ficha = {...ficha, fechaalta: new Date(), fechaactualizacion: new Date()}
+    if(this.id == null){  
+      ficha = {...ficha, 
+        fechaalta: new Date(), 
+        fechaactualizacion: new Date(),
+        usuarioalta: this.email, 
+        usuarioactualizacion: this.email}
       this.agregarFicha(ficha)
     }else{
-      ficha = {...ficha, fechaactualizacion: new Date()}
-      this.editarFicha(this.id)
+      ficha = {...ficha, 
+        fechaactualizacion: new Date(), 
+        usuarioactualizacion: this.email}
+      this.editarFicha(this.id, ficha)
     }
   }
   agregarFicha(ficha: any){
@@ -134,9 +144,8 @@ export class CreateFichaCardioComponent implements OnInit {
     .catch(() => this.toastr.error('Hubo un error al crear la ficha', '', {positionClass: 'toast-bottom-center'}))
   }
 
-  editarFicha(id: string){
+  editarFicha(id: string, ficha: any){
     this.loading = true
-    var ficha: any = this.createFicha.value
     this._fichaService.actualizarFicha(id, ficha)
     .then(() => {
       this.toastr.success('La ficha fue actualizada con exito', '', {positionClass: 'toast-bottom-center'});

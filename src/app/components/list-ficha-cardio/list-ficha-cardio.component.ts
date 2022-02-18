@@ -13,11 +13,13 @@ export class ListFichaCardioComponent implements OnInit {
 
   fichas: any[] = []
   loading: boolean = true;
+  usuario: any
 
   constructor(private _listFichaCardio: FichaCardioService, private toastr: ToastrService, public _auth: AuthService) { }
 
   ngOnInit(): void {
     this.getFichas()
+    this._auth.getCurrentUser().then(user => this.usuario = user)
   }
 
   eliminar(id: string){
