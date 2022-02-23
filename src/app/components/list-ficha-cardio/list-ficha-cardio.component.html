@@ -8,9 +8,7 @@
                         <i class="fa-solid fa-file-excel fa-lg" ></i>
                         <span class="d-none d-md-block d-inline-block float-end"> &nbsp;Exportar</span>
                     </button> 
-                    <button type="button" class="btn btn-outline-primary" routerLink="/create-fichaCardio"
-                        [ngClass]="{'disabled': usuario == null}"
-                    >
+                    <button type="button" class="btn btn-outline-primary" routerLink="/create">
                         <i class="fa-solid fa-circle-plus fa-lg"></i>
                         <span class="d-none d-md-block d-inline-block float-end"> &nbsp;Agregar</span>
                     </button>
@@ -129,12 +127,8 @@
                         </span>
                     </td>
                     <td>
-                        <button [routerLink]="['/create-fichaCardio/', f.id]" type="button" class="btn btn-sm btn-outline-warning"
-                            [ngClass]="{'disabled': usuario == null}"
-                        ><i class="fa-solid fa-pen"></i></button>
-                        <button (click)="eliminar(f.id)" type="button" class="btn btn-sm btn-outline-danger"
-                            [ngClass]="{'disabled': usuario == null}"
-                        ><i class="fa-solid fa-trash"></i></button>
+                        <button [routerLink]="['/create/', f.id]" type="button" class="btn btn-sm btn-outline-warning"><i class="fa-solid fa-pen"></i></button>
+                        <button (click)="eliminar(f.id)" type="button" class="btn btn-sm btn-outline-danger"><i class="fa-solid fa-trash"></i></button>
                     </td>
                   </tr>
                 </tbody>

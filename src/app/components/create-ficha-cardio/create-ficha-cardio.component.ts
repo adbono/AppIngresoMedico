@@ -22,14 +22,12 @@ export class CreateFichaCardioComponent implements OnInit {
   antecedentes: string[] = []
   medicacionhabitual: string[] = []
   tratamiento: string[] = []
-  email: any
 
   constructor(private fb: FormBuilder, 
               private _fichaService: FichaCardioService,
               private router: Router, 
               private toastr: ToastrService,
-              private aRoute: ActivatedRoute,
-              private _auth: AuthService ) { 
+              private aRoute: ActivatedRoute) { 
     this.createFicha = fb.group({
       nombre: ['', Validators.required],
       edad: ['', Validators.required],
@@ -72,7 +70,6 @@ export class CreateFichaCardioComponent implements OnInit {
   ngOnInit(): void {
     this.cargarFicha()
     this.getItems()
-    this._auth.getCurrentUser().then(user => this.email = user?.email)
   }
 
   getItems(){
@@ -123,14 +120,13 @@ export class CreateFichaCardioComponent implements OnInit {
     if(this.id == null){  
       ficha = {...ficha, 
         fechaalta: new Date(), 
-        fechaactualizacion: new Date(),
-        usuarioalta: this.email, 
-        usuarioactualizacion: this.email}
+        fechaactualizacion: new Date()
+      }
       this.agregarFicha(ficha)
     }else{
       ficha = {...ficha, 
-        fechaactualizacion: new Date(), 
-        usuarioactualizacion: this.email}
+        fechaactualizacion: new Date()
+      }
       this.editarFicha(this.id, ficha)
     }
   }
@@ -140,7 +136,7 @@ export class CreateFichaCardioComponent implements OnInit {
     .then(() => {
       this.toastr.success('La ficha fue registrada con exito', '', {positionClass: 'toast-bottom-center'});
       this.loading = false
-      this.router.navigate(['/list-fichaCardio'])})
+      this.router.navigate(['/home'])})
     .catch(() => this.toastr.error('Hubo un error al crear la ficha', '', {positionClass: 'toast-bottom-center'}))
   }
 
@@ -150,7 +146,7 @@ export class CreateFichaCardioComponent implements OnInit {
     .then(() => {
       this.toastr.success('La ficha fue actualizada con exito', '', {positionClass: 'toast-bottom-center'});
       this.loading = false
-      this.router.navigate(['/list-fichaCardio'])})
+      this.router.navigate(['/home'])})
     .catch(() => this.toastr.error('Hubo un error al actualizar la ficha', '', {positionClass: 'toast-bottom-center'}))
   }
 

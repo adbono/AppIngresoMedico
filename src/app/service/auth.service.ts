@@ -15,7 +15,7 @@ export class AuthService {
   }
 
   signInGoogle(){
-    return this.auth.signInWithPopup( new firebase.auth.GoogleAuthProvider())
+    return this.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
   }
 
   async register(email: string, pass: string){

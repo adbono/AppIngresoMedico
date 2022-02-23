@@ -11,32 +11,12 @@ import {Router} from "@angular/router"
 export class NavbarComponent implements OnInit {
 
   titulo: string
-  usuario: any
 
-  constructor(private titleService: Title, private _authService: AuthService, private router: Router) { 
+  constructor(private titleService: Title) { 
    this.titulo = this.titleService.getTitle()
   }
 
   ngOnInit(): void {
-    this.usuario = null
-    this.getUserData()
-  }
-
-  getUserData(){
-    this._authService.getCurrentUser().then(user => {
-      if(user != null) this.usuario = user
-      else this.router.navigate(['/list-fichaCardio'])
-    })
-  }
-
-  logout(){
-    this._authService.logout().then(() => {
-      this.ngOnInit()
-    })
-  }
-
-  login(){
-    this._authService.signInGoogle().then(() => window.location.reload())
   }
 
 }

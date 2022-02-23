@@ -19,7 +19,6 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { CreateFichaCardioComponent } from './components/create-ficha-cardio/create-ficha-cardio.component';
 import { ListFichaCardioComponent } from './components/list-ficha-cardio/list-ficha-cardio.component';
 import { ListItemsComponent } from './components/list-items/list-items.component';
-import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -29,8 +28,7 @@ import { LoginComponent } from './components/login/login.component';
     CreateUsuarioComponent,
     CreateFichaCardioComponent,
     ListFichaCardioComponent,
-    ListItemsComponent,
-    LoginComponent
+    ListItemsComponent
   ],
   imports: [
     BrowserModule,
