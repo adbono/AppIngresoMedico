@@ -9,7 +9,7 @@ const routes: Routes = [
   { path: 'create', component: CreateFichaCardioComponent},
   { path: 'home', component: ListFichaCardioComponent},
   { path: 'create/:id', component: CreateFichaCardioComponent},
-  { path: 'list-items', component: ListItemsComponent},
+  { path: 'items', component: ListItemsComponent},
   { path: '**', redirectTo: 'home', pathMatch: 'full'}
 ];
 
